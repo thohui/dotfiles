@@ -13,8 +13,10 @@ PS1='[\u@\h \W]\$ '
 export PATH="$PATH:/home/seaky/.local/bin"
 
 eval "$(fzf --bash)"
+eval "$(starship init bash)"
 
 alias vi=nvim
 alias vim=nvim
+alias projects="cd /mnt/chungus/Projects/"
 
 export EDITOR=nvim

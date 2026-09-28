@@ -10,12 +10,14 @@ hl.bind("SUPER + ALT + 4", hl.dsp.exec_cmd('grim -g "$(slurp -w 0)" - | wl-copy'
 -- WINDOW MANAGEMENT
 
 -- Close windows
-hl.bind("SUPER + W", hl.dsp.window.close(), { description = "Close window" })
-hl.bind(
-	"CTRL + ALT + DELETE",
-	hl.dsp.exec_cmd("omarchy-hyprland-window-close-all"),
-	{ description = "Close all windows" }
-)
+--hl.bind("SUPER + W", hl.dsp.window.close(), { description = "Close window" })
+hl.bind("SUPER + W", function()
+	local w = hl.get_active_window()
+	if w ~= nil and (w.class:match("^steam_app_") or w.class:match("%.exe$")) then
+		return
+	end
+	hl.dispatch(hl.dsp.window.close())
+end, { description = "Close window" })
 
 -- Control tiling
 hl.bind("SUPER + J", hl.dsp.layout("togglesplit"), { description = "Toggle window split" })
@@ -35,12 +37,6 @@ hl.bind(
 	"SUPER + ALT + F",
 	hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }),
 	{ description = "Full width" }
-)
-hl.bind("SUPER + O", hl.dsp.exec_cmd("omarchy-hyprland-window-pop"), { description = "Pop window out" })
-hl.bind(
-	"SUPER + L",
-	hl.dsp.exec_cmd("omarchy-hyprland-workspace-layout-toggle"),
-	{ description = "Toggle workspace layout" }
 )
 
 -- WINDOW NAVIGATION & FOCUS
@@ -202,9 +198,7 @@ hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { description = "Resize win
 hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }), { description = "Next workspace" })
 hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }), { description = "Previous workspace" })
 
---###############################################################################
 -- WINDOW GROUPING
---###############################################################################
 
 -- Toggle grouping
 hl.bind("SUPER + G", hl.dsp.group.toggle(), { description = "Toggle grouping" })

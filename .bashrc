@@ -10,13 +10,12 @@ alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
 . "$HOME/.cargo/env"
 
-export PATH="$PATH:/home/seaky/.local/bin"
+export PATH="$PATH:/home/seaky/.local/bin:/home/seaky/.dotnet"
 
 eval "$(fzf --bash)"
 eval "$(starship init bash)"
 
 alias vi=nvim
 alias vim=nvim
-alias projects="cd /mnt/chungus/Projects/"
 
 export EDITOR=nvim

@@ -7,6 +7,7 @@
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
+    "custom/reso-stats",
     "custom/spotify",
     "custom/audio",
     "network",
@@ -54,6 +55,12 @@
     "format": "󰕾",
     "on-click": "pavucontrol",
     "tooltip": false
+  },
+"custom/reso-stats": {
+    "exec": "~/.config/waybar/scripts/reso-stats.sh",
+    "return-type": "json",
+    // 15 minutes
+    "interval": 3,
   },
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
